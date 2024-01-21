@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memories</title>
+  </head>
+<body>
+
+    <div class="container">
+
+      <div>
+        <img [src]="imgSource" alt="memories image" class="logoImage">
+
+        <form #inputForm="ngForm" (ngSubmit)="addMemory(inputForm.value)">
+        <div class="info">
+            <div class="row1">
+                <input type="text" placeholder="Enter title" name="title" id="title"  [(ngModel)]="title">
+                <input type="text" name="date" [(ngModel)]="currentDate" readonly ngModel >
+            </div> 
+            <div class="row2">
+                <input type="text"  placeholder="description" id="description" name="description" [(ngModel)]="description">
+                <button class="save">SAVE</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="days" id="days">
+      <div class="name" (click)="displayMemories('SUN')" [ngStyle]="getBackgroundColor('SUN')"><button>SUN</button></div>
+      <div class="name" (click)="displayMemories('MON')" [ngStyle]="getBackgroundColor('MON')"><button>MON</button></div>
+      <div class="name" (click)="displayMemories('TUE')" [ngStyle]="getBackgroundColor('TUE')"><button>TUE</button></div>
+      <div class="name" (click)="displayMemories('WED')" [ngStyle]="getBackgroundColor('WED')"><BUtton>WED</BUtton></div>
+      <div class="name" (click)="displayMemories('THU')" [ngStyle]="getBackgroundColor('THU')"><BUtton>THU</BUtton></div>
+      <div class="name" (click)="displayMemories('FRI')" [ngStyle]="getBackgroundColor('FRI')"><BUtton>FRI</BUtton></div>
+      <div class="name" (click)="displayMemories('SAT')" [ngStyle]="getBackgroundColor('SAT')"><BUtton>SAT</BUtton></div>
+    </div>
+    
+
+
+    
+
+    <div *ngFor="let memory of selectedDayMemories">
+      <div class="list-container">
+        <ul>
+            <li>
+        <div class="info-box1">
+            <h3>{{memory.title}}</h3>
+            <p>{{memory.description}}</p>
+        </div>
+        <div class="info-box3">
+            <button (click)="deleteMemory(memory)" class="delete">Delete</button>
+        </div>
+    </li>
+</ul>
+    </div>
+    </div>
+      </div>
+      </div>
+</body>
+</html>
